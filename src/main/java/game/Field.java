@@ -38,7 +38,7 @@ public class Field {
 
     }
 
-    public void moveField() {
+    public void fallDown() {
         activePiece.move();
     }
 
@@ -61,13 +61,55 @@ public class Field {
         activePiece.rotate();
     }
 
+    public boolean isPieceTouchesGround(){
+        //check if piece can fall further
+        List<Point> activeShape = activePiece.getActiveShape();
+        boolean isTouchung = false;
+        for (Point point: activeShape
+             ) {
+            System.out.println("point gets checked");
+            //point to check
+            int y = point.getY() + 1;
+            int x = point.getX(); //x stays the same, important is the point below
+            System.out.println("x: " + x + " y: " + y);
+
+            if (!field[y][x].isEmpty() && !isCoordinatePartOfThePiece(x,y) ){
+                System.out.println("Piece does not touch the ground");
+                isTouchung = true;
+                break;
+            }
+
+            if (FIELD_HEIGHT -1 <= y){
+                System.out.println("ground reached");
+                isTouchung = true;
+                break;
+            }
+
+
+
+        }
+        return isTouchung;
+    }
+
+    public boolean isCoordinatePartOfThePiece(int x, int y){
+        List<Point> activeShape = this.activePiece.getActiveShape();
+        for (Point shapePoints: activeShape
+             ) {
+            if (x == shapePoints.getX() && y == shapePoints.getY()){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 
 
 
 
 
     public void print(){
-        for(int e = 0; e< 100;e++){
+        for(int e = 0; e< 5;e++){
             System.out.println("\n");
         }
         for(int i = 0; i< FIELD_HEIGHT; i++){

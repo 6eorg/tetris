@@ -15,8 +15,15 @@ public class Game {
             clearConsole();
             field.addPieceToField();
             field.print();
-            field.removePieceFromField();
-            field.moveField();
+
+            if (!field.isPieceTouchesGround()){
+                field.removePieceFromField();
+
+                field.fallDown();
+            }else {
+                field.addPiece();
+            }
+
             field.rotatePiece();
             Thread.sleep(500);
 
