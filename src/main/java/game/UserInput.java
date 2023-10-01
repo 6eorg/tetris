@@ -34,6 +34,7 @@ public class UserInput implements NativeKeyListener {
         System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
         if(keyPressed.toLowerCase().equals("r")){
+            if(!Field.getInstance().isChecking())
             Field.getInstance().getActivePiece().rotate();
         }
     }

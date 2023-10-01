@@ -3,6 +3,7 @@ package game;
 import game.pieces.Trapez;
 
 import java.util.List;
+import java.util.Random;
 
 public class Field {
     private static Field INSTANCE;
@@ -12,8 +13,11 @@ public class Field {
 
     private Point[][] field;
 
+    private Piece[] pieces = {new Trapez()};
 
     private Piece activePiece;
+
+    private boolean isChecking = false;
 
 
 
@@ -42,14 +46,12 @@ public class Field {
 
 
 
-
-
-
     public void addPiece(){
-        //todo random piece
+        //select random piece
+        Random rnd = new Random();
+        int randInt = rnd.nextInt(pieces.length);
+        activePiece = pieces[randInt];
 
-        //todo this is only test
-        activePiece = new Trapez();
         activePiece.initialize();
 
 
@@ -57,6 +59,7 @@ public class Field {
 
 
     public void addPieceToField(){
+        isChecking = true;
         for (Point point: activePiece.getActiveShape()
              ) {
 
@@ -65,9 +68,11 @@ public class Field {
             field[point.getY()][point.getX()].setColor(point.getColor());
 
         }
+        isChecking = false;
     }
 
     public void removePieceFromField(){
+        isChecking = true;
         for (Point point: activePiece.getActiveShape()
         ) {
             field[point.getY()][point.getX()].setEmpty(true);
@@ -75,6 +80,7 @@ public class Field {
             field[point.getY()][point.getX()].setColor(ConsoleColors.RESET);
 
         }
+        isChecking = false;
     }
 
     //todo only test usage. remove
@@ -87,6 +93,7 @@ public class Field {
     }
 
     public boolean isPieceTouchesGround(){
+        isChecking = true;
         //check if piece can fall further
         List<Point> activeShape = activePiece.getActiveShape();
         boolean isTouchung = false;
@@ -111,7 +118,9 @@ public class Field {
             }
 
         }
+        isChecking = false;
         return isTouchung;
+
     }
 
     public boolean isCoordinatePartOfThePiece(int x, int y){
@@ -138,6 +147,8 @@ public class Field {
         for(int i = 0; i< FIELD_HEIGHT; i++){
             //right border
             System.out.printf("#");
+
+
             for(int j = 0; j<FIELD_WIDTH;j++){
                 Point point = field[i][j];
 
@@ -145,11 +156,17 @@ public class Field {
                 if (point.isEmpty()){
                     System.out.printf(point.getColor().getCode() + "_" + ConsoleColors.RESET.getCode());
                 }else {
-                    System.out.printf(point.getColor().getCode() + "*" + ConsoleColors.RESET.getCode());
+                    System.out.printf(point.getColor().getCode() + "#" + ConsoleColors.RESET.getCode());
                 }
             }
             //left border
-            System.out.print("#\n");
+            System.out.print("#");
+
+            //print points
+            if (i == FIELD_HEIGHT/2){
+                System.out.printf("    POINTS: 0" );
+            }
+            System.out.print("\n");
         }
 
     }
@@ -160,5 +177,13 @@ public class Field {
 
     public void setActivePiece(Piece activePiece) {
         this.activePiece = activePiece;
+    }
+
+    public boolean isChecking() {
+        return isChecking;
+    }
+
+    public void setChecking(boolean checking) {
+        isChecking = checking;
     }
 }

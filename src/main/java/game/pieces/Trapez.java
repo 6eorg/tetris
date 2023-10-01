@@ -33,10 +33,10 @@ public class Trapez extends Piece {
         shapes.add(shape2);
 
         ArrayList<Point> shape3 = new ArrayList();
+        shape3.add(new Point(3, 0));
         shape3.add(new Point(4, 0));
-        shape3.add(new Point(5, 0));
-        shape3.add( new Point(5, 1));
-        shape3.add( new Point(6, 0));
+        shape3.add( new Point(4, 1));
+        shape3.add( new Point(5, 0));
         shapes.add(shape3);
 
 
