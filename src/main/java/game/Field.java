@@ -10,10 +10,8 @@ public class Field {
     final int FIELD_HEIGHT = 15;
 
     private Point[][] field;
-    private List<Point> activePiece;
 
-    //todo only test replace with piece
-    private Trapez trapez;
+    private Piece activePiece;
 
     public Field() {
         this.field = new Point[FIELD_HEIGHT][FIELD_WIDTH];
@@ -34,29 +32,33 @@ public class Field {
         //todo random piece
 
         //todo this is only test
-        trapez = new Trapez();
-        trapez.initialize();
-        activePiece = trapez.getActiveShape();
+        activePiece = new Trapez();
+        activePiece.initialize();
+
 
     }
 
     public void moveField() {
-        //todo replace with figure/piece
-        trapez.move();
+        activePiece.move();
     }
 
     public void addPieceToField(){
-        for (Point point: activePiece
+        for (Point point: activePiece.getActiveShape()
              ) {
             field[point.getY()][point.getX()].setEmpty(false);
         }
     }
 
     public void removePieceFromField(){
-        for (Point point: activePiece
+        for (Point point: activePiece.getActiveShape()
         ) {
             field[point.getY()][point.getX()].setEmpty(true);
         }
+    }
+
+    //todo only test usage. remove
+    public void rotatePiece(){
+        activePiece.rotate();
     }
 
 
@@ -65,6 +67,9 @@ public class Field {
 
 
     public void print(){
+        for(int e = 0; e< 100;e++){
+            System.out.println("\n");
+        }
         for(int i = 0; i< FIELD_HEIGHT; i++){
             //right border
             System.out.printf("#");

@@ -17,7 +17,8 @@ public class Game {
             field.print();
             field.removePieceFromField();
             field.moveField();
-            Thread.sleep(1000);
+            field.rotatePiece();
+            Thread.sleep(500);
 
 
         }while (true);
