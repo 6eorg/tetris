@@ -12,7 +12,7 @@ public class Game {
         field.addPiece();
         boolean gameOver = false;
         do {
-            field.rotatePiece();
+//            field.rotatePiece();
 
             clearConsole();
             field.addPieceToField();

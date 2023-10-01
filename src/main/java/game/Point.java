@@ -5,9 +5,12 @@ public class Point {
     private int y;
     private boolean isEmpty = true;
 
+    private ConsoleColors color;
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+        color = ConsoleColors.RESET;
     }
 
     public int getX() {
@@ -32,5 +35,13 @@ public class Point {
 
     public void setEmpty(boolean empty) {
         isEmpty = empty;
+    }
+
+    public ConsoleColors getColor() {
+        return color;
+    }
+
+    public void setColor(ConsoleColors color) {
+        this.color = color;
     }
 }

@@ -45,7 +45,11 @@ public class Field {
     public void addPieceToField(){
         for (Point point: activePiece.getActiveShape()
              ) {
+
             field[point.getY()][point.getX()].setEmpty(false);
+            //set color
+            field[point.getY()][point.getX()].setColor(point.getColor());
+
         }
     }
 
@@ -53,6 +57,9 @@ public class Field {
         for (Point point: activePiece.getActiveShape()
         ) {
             field[point.getY()][point.getX()].setEmpty(true);
+            //remove color
+            field[point.getY()][point.getX()].setColor(ConsoleColors.RESET);
+
         }
     }
 
@@ -114,11 +121,13 @@ public class Field {
             //right border
             System.out.printf("#");
             for(int j = 0; j<FIELD_WIDTH;j++){
+                Point point = field[i][j];
 
-                if (field[i][j].isEmpty()){
-                    System.out.printf("_");
+
+                if (point.isEmpty()){
+                    System.out.printf(point.getColor().getCode() + "_" + ConsoleColors.RESET.getCode());
                 }else {
-                    System.out.printf("*");
+                    System.out.printf(point.getColor().getCode() + "*" + ConsoleColors.RESET.getCode());
                 }
             }
             //left border
@@ -126,4 +135,5 @@ public class Field {
         }
 
     }
+
 }

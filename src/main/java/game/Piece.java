@@ -63,6 +63,22 @@ public class Piece {
         }
     }
 
+    public void setRandomColor(){
+        List<List<Point>> shapes = getShapes();
+
+        ConsoleColors randomColor = ConsoleColors.getRandomColor();
+        for (List<Point> shape: shapes
+             ) {
+            for (Point point: shape
+                 ) {
+                point.setColor(randomColor);
+            }
+
+        }
+        System.out.println("random color is set to: " + randomColor.getCode() );
+
+    }
+
 }
 
 
