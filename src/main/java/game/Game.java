@@ -1,18 +1,21 @@
 package game;
 
+import java.io.IOException;
+
 public class Game {
 
-    public Game() throws InterruptedException {
+    public Game() throws InterruptedException, IOException {
         start();
     }
 
-    public void start() throws InterruptedException {
-        Field field = new Field();
+    public void start() throws InterruptedException, IOException {
+        Field field = Field.getInstance();
+        UserInput userInput = new UserInput();
+        userInput.startListening();
         field.initialize();
         field.addPiece();
         boolean gameOver = false;
         do {
-//            field.rotatePiece();
 
             clearConsole();
             field.addPieceToField();

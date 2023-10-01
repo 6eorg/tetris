@@ -5,16 +5,29 @@ import game.pieces.Trapez;
 import java.util.List;
 
 public class Field {
+    private static Field INSTANCE;
 
     final int FIELD_WIDTH = 20;
     final int FIELD_HEIGHT = 15;
 
     private Point[][] field;
 
+
     private Piece activePiece;
+
+
 
     public Field() {
         this.field = new Point[FIELD_HEIGHT][FIELD_WIDTH];
+
+    }
+
+    public static Field getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new Field();
+        }
+
+        return INSTANCE;
     }
 
     public void initialize(){
@@ -25,8 +38,12 @@ public class Field {
             }
         }
         System.out.println("field initialized");
-
     }
+
+
+
+
+
 
     public void addPiece(){
         //todo random piece
@@ -38,9 +55,6 @@ public class Field {
 
     }
 
-    public void fallDown() {
-        activePiece.move();
-    }
 
     public void addPieceToField(){
         for (Point point: activePiece.getActiveShape()
@@ -66,6 +80,10 @@ public class Field {
     //todo only test usage. remove
     public void rotatePiece(){
         activePiece.rotate();
+    }
+
+    public void fallDown(){
+        this.activePiece.move();
     }
 
     public boolean isPieceTouchesGround(){
@@ -136,4 +154,11 @@ public class Field {
 
     }
 
+    public Piece getActivePiece() {
+        return activePiece;
+    }
+
+    public void setActivePiece(Piece activePiece) {
+        this.activePiece = activePiece;
+    }
 }
