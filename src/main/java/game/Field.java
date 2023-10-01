@@ -1,5 +1,6 @@
 package game;
 
+import game.pieces.Line;
 import game.pieces.Trapez;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class Field {
 
     private Point[][] field;
 
-    private Piece[] pieces = {new Trapez()};
+    private Piece[] pieces = {new Trapez(), new Line()};
 
     private Piece activePiece;
 

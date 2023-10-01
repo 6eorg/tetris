@@ -9,8 +9,6 @@ import java.util.logging.Logger;
 
 public class UserInput implements NativeKeyListener {
 
-    String lastKeyPressed;
-
     public void startListening() {
         // turn of the disgusting logger
         Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
@@ -34,8 +32,9 @@ public class UserInput implements NativeKeyListener {
         System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
         if(keyPressed.toLowerCase().equals("r")){
-            if(!Field.getInstance().isChecking())
-            Field.getInstance().getActivePiece().rotate();
+            if(!Field.getInstance().isChecking()) {
+                Field.getInstance().getActivePiece().rotate();
+            }
         }
     }
 
@@ -47,11 +46,4 @@ public class UserInput implements NativeKeyListener {
         // Empty Implementation
     }
 
-    public String getLastKeyPressed() {
-        return lastKeyPressed;
-    }
-
-    public void setLastKeyPressed(String lastKeyPressed) {
-        this.lastKeyPressed = lastKeyPressed;
-    }
 }
