@@ -73,19 +73,17 @@ public class Field {
             int x = point.getX(); //x stays the same, important is the point below
             System.out.println("x: " + x + " y: " + y);
 
-            if (!field[y][x].isEmpty() && !isCoordinatePartOfThePiece(x,y) ){
+            if (y < FIELD_HEIGHT && !field[y][x].isEmpty() && !isCoordinatePartOfThePiece(x,y) ){
                 System.out.println("Piece does not touch the ground");
                 isTouchung = true;
                 break;
             }
 
-            if (FIELD_HEIGHT -1 <= y){
+            if (FIELD_HEIGHT  <= y){
                 System.out.println("ground reached");
                 isTouchung = true;
                 break;
             }
-
-
 
         }
         return isTouchung;

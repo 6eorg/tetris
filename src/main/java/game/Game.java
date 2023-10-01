@@ -10,7 +10,9 @@ public class Game {
         Field field = new Field();
         field.initialize();
         field.addPiece();
+        boolean gameOver = false;
         do {
+            field.rotatePiece();
 
             clearConsole();
             field.addPieceToField();
@@ -18,17 +20,23 @@ public class Game {
 
             if (!field.isPieceTouchesGround()){
                 field.removePieceFromField();
-
                 field.fallDown();
+
             }else {
                 field.addPiece();
+                if (field.isPieceTouchesGround()){
+                    gameOver = true;
+                    field.addPieceToField();
+                    field.print();
+                }
             }
 
-            field.rotatePiece();
+
             Thread.sleep(500);
 
 
-        }while (true);
+        }while (!gameOver);
+        System.out.println("GAME OVER");
     }
 
     public static void clearConsole() {
