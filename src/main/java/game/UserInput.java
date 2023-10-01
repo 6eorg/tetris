@@ -36,6 +36,19 @@ public class UserInput implements NativeKeyListener {
                 Field.getInstance().getActivePiece().rotate();
             }
         }
+
+        if(keyPressed.toLowerCase().equals("a")){
+            Field.getInstance().getActivePiece().moveToLeft();
+
+        }
+
+
+        if(keyPressed.toLowerCase().equals("d")){
+            Field.getInstance().getActivePiece().moveToRight();
+
+        }
+
+
     }
 
     public void nativeKeyReleased(NativeKeyEvent e) {

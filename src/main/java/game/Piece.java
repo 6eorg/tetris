@@ -45,9 +45,18 @@ public class Piece {
     }
 
     public void moveToRight() {
+        System.out.println("checkmovetoright");
+        //check if piece can move to the right
+        List<Point> currentActiveShape = getActiveShape();
+        if (!isCanShapeMoveToTheRight(currentActiveShape)){
+            System.out.print("shape darf nicht moven");
+            return;
+        }
         //update all shapes
         List<List<Point>> shapes = getShapes();
-        for(int i = 0; i<4;i++) {
+
+
+        for(int i = 0; i<shapes.size();i++) {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
@@ -60,7 +69,7 @@ public class Piece {
     public void moveToLeft() {
         //update all shapes
         List<List<Point>> shapes = getShapes();
-        for(int i = 0; i<4;i++) {
+        for(int i = 0; i<shapes.size();i++) {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
@@ -92,6 +101,23 @@ public class Piece {
 
     public void setActiveShapeNr(int activeShapeNr) {
 
+    }
+
+    private int findRighestPartOfPiece(List<Point> shape){
+        int highestX = 0;
+        for (Point point: shape
+             ) {
+            if (point.getX() >= highestX){
+                highestX = point.getX();
+            }
+
+        }
+        System.out.printf("highest part of x shape: " + highestX);
+        return highestX;
+    }
+
+    private boolean isCanShapeMoveToTheRight(List<Point> shape){
+        return findRighestPartOfPiece(shape) < Field.getInstance().FIELD_WIDTH;
     }
 
 

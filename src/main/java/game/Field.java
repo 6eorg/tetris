@@ -63,7 +63,6 @@ public class Field {
         isChecking = true;
         for (Point point: activePiece.getActiveShape()
              ) {
-
             field[point.getY()][point.getX()].setEmpty(false);
             //set color
             field[point.getY()][point.getX()].setColor(point.getColor());
@@ -84,10 +83,6 @@ public class Field {
         isChecking = false;
     }
 
-    //todo only test usage. remove
-    public void rotatePiece(){
-        activePiece.rotate();
-    }
 
     public void fallDown(){
         this.activePiece.move();
@@ -97,10 +92,9 @@ public class Field {
         isChecking = true;
         //check if piece can fall further
         List<Point> activeShape = activePiece.getActiveShape();
-        boolean isTouchung = false;
+        boolean isTouching = false;
         for (Point point: activeShape
              ) {
-            System.out.println("point gets checked");
             //point to check
             int y = point.getY() + 1;
             int x = point.getX(); //x stays the same, important is the point below
@@ -108,19 +102,19 @@ public class Field {
 
             if (y < FIELD_HEIGHT && !field[y][x].isEmpty() && !isCoordinatePartOfThePiece(x,y) ){
                 System.out.println("Piece does not touch the ground");
-                isTouchung = true;
+                isTouching = true;
                 break;
             }
 
             if (FIELD_HEIGHT  <= y){
                 System.out.println("ground reached");
-                isTouchung = true;
+                isTouching = true;
                 break;
             }
 
         }
         isChecking = false;
-        return isTouchung;
+        return isTouching;
 
     }
 
