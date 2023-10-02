@@ -39,17 +39,8 @@ public class Line extends Piece {
 
 
     @Override
-    public List<Point> getActiveShape(){
-        return shapes.get(activeShapeNr);
-    }
-
-    @Override
     public List<List<Point>> getShapes() {
         return shapes;
-    }
-
-    public void setShapes(List<List<Point>> shapes) {
-        this.shapes = shapes;
     }
 
     @Override

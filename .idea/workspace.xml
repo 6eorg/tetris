@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab90a52d-dad0-4a8e-be9c-d499b5d297b5" name="Changes" comment="first setup">
+    <list default="true" id="ab90a52d-dad0-4a8e-be9c-d499b5d297b5" name="Changes" comment="move Pieces to left &amp; right">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Line.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/pieces/Trapez.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/pieces/Trapez.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -32,12 +33,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\tetris\src\main\java\game" />
@@ -72,7 +74,63 @@
       <option name="project" value="LOCAL" />
       <updated>1696162973603</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="piece &amp; trapez update &amp; clean up">
+      <created>1696166594174</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696166594174</updated>
+    </task>
+    <task id="LOCAL-00003" summary="methods to check if piece can fall further down">
+      <created>1696168704588</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696168704588</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixes in check methods">
+      <created>1696169984377</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696169984377</updated>
+    </task>
+    <task id="LOCAL-00005" summary="colors &amp; game logic fixes">
+      <created>1696172510696</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696172510696</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added user input">
+      <created>1696176977502</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696176977502</updated>
+    </task>
+    <task id="LOCAL-00007" summary="select random piece">
+      <created>1696178523358</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1696178523359</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added Line &amp; outsourced rotate to Piece class">
+      <created>1696180110081</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1696180110081</updated>
+    </task>
+    <task id="LOCAL-00009" summary="move Pieces to left &amp; right">
+      <created>1696181996373</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1696181996373</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -88,6 +146,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="first setup" />
+    <MESSAGE value="piece &amp; trapez update &amp; clean up" />
+    <MESSAGE value="methods to check if piece can fall further down" />
+    <MESSAGE value="fixes in check methods" />
+    <MESSAGE value="colors &amp; game logic fixes" />
+    <MESSAGE value="added user input" />
+    <MESSAGE value="select random piece" />
+    <MESSAGE value="added Line &amp; outsourced rotate to Piece class" />
+    <MESSAGE value="move Pieces to left &amp; right" />
+    <option name="LAST_COMMIT_MESSAGE" value="move Pieces to left &amp; right" />
   </component>
 </project>

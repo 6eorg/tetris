@@ -53,10 +53,6 @@ public class Trapez extends Piece {
     }
 
 
-    @Override
-    public List<Point> getActiveShape(){
-        return shapes.get(activeShapeNr);
-    }
 
 
     @Override

@@ -181,4 +181,8 @@ public class Field {
     public void setChecking(boolean checking) {
         isChecking = checking;
     }
+
+    public Point[][] getField() {
+        return field;
+    }
 }

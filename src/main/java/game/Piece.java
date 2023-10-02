@@ -1,54 +1,47 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Piece {
+public abstract class Piece {
 
-    //this class will get overriden from child classes
-    public List<Point> getActiveShape(){
-        return null;
+    //this classes will get overriden from child classes
+    public abstract void initialize();
+
+    public abstract List<List<Point>> getShapes();
+
+
+    public List<Point> getActiveShape() {
+        return this.getShapes().get(this.getActiveShapeNr());
     }
 
 
-
-
-
-    //this class will get overriden from child classes
-    public void initialize(){
-    }
-
-    public void rotate(){
+    public void rotate() {
         int shapeNr = getActiveShapeNr();
         shapeNr++;
-        if (shapeNr > getShapes().size()-1){
+        if (shapeNr > getShapes().size() - 1) {
             shapeNr = 0;
         }
         setActiveShapeNr(shapeNr);
-    }
-
-    public List<List<Point>> getShapes(){
-        return null;
     }
 
 
     public void move() {
         //update all shapes
         List<List<Point>> shapes = getShapes();
-        for(int i = 0; i<shapes.size();i++) {
+        for (int i = 0; i < shapes.size(); i++) {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
                 point.setY(point.getY() + 1);
             }
         }
-
     }
 
     public void moveToRight() {
-        System.out.println("checkmovetoright");
         //check if piece can move to the right
         List<Point> currentActiveShape = getActiveShape();
-        if (!isCanShapeMoveToTheRight(currentActiveShape)){
+        if (!isCanShapeMoveToTheDirection(findRighestOrLeftestPointsOfPiece(currentActiveShape, "r"), "r")) {
             System.out.print("shape darf nicht moven");
             return;
         }
@@ -56,7 +49,7 @@ public class Piece {
         List<List<Point>> shapes = getShapes();
 
 
-        for(int i = 0; i<shapes.size();i++) {
+        for (int i = 0; i < shapes.size(); i++) {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
@@ -67,9 +60,15 @@ public class Piece {
     }
 
     public void moveToLeft() {
+        List<Point> currentActiveShape = getActiveShape();
+        if (!isCanShapeMoveToTheDirection(findRighestOrLeftestPointsOfPiece(currentActiveShape, "l"), "l")) {
+            System.out.print("shape darf nicht moven");
+            return;
+        }
+
         //update all shapes
         List<List<Point>> shapes = getShapes();
-        for(int i = 0; i<shapes.size();i++) {
+        for (int i = 0; i < shapes.size(); i++) {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
@@ -79,23 +78,23 @@ public class Piece {
         }
     }
 
-    public void setRandomColor(){
+    public void setRandomColor() {
         List<List<Point>> shapes = getShapes();
 
         ConsoleColors randomColor = ConsoleColors.getRandomColor();
-        for (List<Point> shape: shapes
-             ) {
-            for (Point point: shape
-                 ) {
+        for (List<Point> shape : shapes
+        ) {
+            for (Point point : shape
+            ) {
                 point.setColor(randomColor);
             }
 
         }
-        System.out.println("random color is set to: " + randomColor.getCode() );
+        System.out.println("random color is set to: " + randomColor.getCode());
 
     }
 
-    public int getActiveShapeNr(){
+    public int getActiveShapeNr() {
         return 0;
     }
 
@@ -103,21 +102,70 @@ public class Piece {
 
     }
 
-    private int findRighestPartOfPiece(List<Point> shape){
-        int highestX = 0;
-        for (Point point: shape
-             ) {
-            if (point.getX() >= highestX){
-                highestX = point.getX();
+    private List<Point> findRighestOrLeftestPointsOfPiece(List<Point> shape, String side) {
+        int rightestX = 0;
+        int leftestX = Field.getInstance().FIELD_WIDTH;
+        for (Point point : shape
+        ) {
+            if (side.equals("r") && point.getX() >= rightestX) {
+                rightestX = point.getX();
+            }
+            else if (side.equals("l") && point.getX() < leftestX) {
+                leftestX = point.getX();
+            }
+        }
+        List<Point> rightestPoints = new ArrayList<>();
+        List<Point> leftestPoints = new ArrayList<>();
+        for (Point point : shape
+        ) {
+            if (side.equals("r") && point.getX() == rightestX){
+                rightestPoints.add(point);
+            }else if (side.equals("l") && point.getX() == leftestX) {
+                leftestPoints.add(point);
             }
 
         }
-        System.out.printf("highest part of x shape: " + highestX);
-        return highestX;
+
+        return side.equals("r") ? rightestPoints : leftestPoints;
     }
 
-    private boolean isCanShapeMoveToTheRight(List<Point> shape){
-        return findRighestPartOfPiece(shape) < Field.getInstance().FIELD_WIDTH;
+    private boolean isCanShapeMoveToTheDirection(List<Point> pointsToCheck, String direction) {
+        //1. step: check borders. if touches border no other checks are needed
+        boolean isBorderContactFound = false;
+        for (Point point: pointsToCheck
+             ) {
+            if (direction.equals("r") && point.getX() == Field.getInstance().FIELD_WIDTH){
+                isBorderContactFound = true;
+                break;
+            }
+            else if (direction.equals("l") && point.getX() == 0){
+                isBorderContactFound = true;
+                break;
+            }
+        }
+        if (isBorderContactFound){
+            return false;
+        }
+
+        //2. check field
+        boolean isCanMoveToTheRight = true;
+        boolean isCanMoveToTheLeft = true;
+        Point[][] fieldPoints = Field.getInstance().getField();
+        for (Point point: pointsToCheck
+             ) {
+            //check if the field on the left/right of the exposed points is free
+            if (direction.equals("r") && !(fieldPoints[point.getY()][point.getX() + 1].isEmpty())){
+                isCanMoveToTheRight = false;
+                break;
+            }
+            else if (direction.equals("l") && !(fieldPoints[point.getY()][point.getX()-1].isEmpty())){
+                isCanMoveToTheLeft = false;
+                break;
+            }
+
+        }
+        return direction.equals("r") ? isCanMoveToTheRight : isCanMoveToTheLeft;
+
     }
 
 
