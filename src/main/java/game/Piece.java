@@ -10,7 +10,6 @@ public abstract class Piece {
 
     public abstract List<List<Point>> getShapes();
 
-
     public List<Point> getActiveShape() {
         return this.getShapes().get(this.getActiveShapeNr());
     }
@@ -24,7 +23,6 @@ public abstract class Piece {
         }
         setActiveShapeNr(shapeNr);
     }
-
 
     public void move() {
         //update all shapes
@@ -48,7 +46,6 @@ public abstract class Piece {
         //update all shapes
         List<List<Point>> shapes = getShapes();
 
-
         for (int i = 0; i < shapes.size(); i++) {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
@@ -65,7 +62,6 @@ public abstract class Piece {
             System.out.print("shape darf nicht moven");
             return;
         }
-
         //update all shapes
         List<List<Point>> shapes = getShapes();
         for (int i = 0; i < shapes.size(); i++) {
@@ -88,10 +84,8 @@ public abstract class Piece {
             ) {
                 point.setColor(randomColor);
             }
-
         }
         System.out.println("random color is set to: " + randomColor.getCode());
-
     }
 
     public int getActiveShapeNr() {
@@ -123,9 +117,7 @@ public abstract class Piece {
             }else if (side.equals("l") && point.getX() == leftestX) {
                 leftestPoints.add(point);
             }
-
         }
-
         return side.equals("r") ? rightestPoints : leftestPoints;
     }
 
@@ -165,10 +157,7 @@ public abstract class Piece {
 
         }
         return direction.equals("r") ? isCanMoveToTheRight : isCanMoveToTheLeft;
-
     }
-
-
 
 }
 

@@ -10,10 +10,10 @@ public class Trapez extends Piece {
 
     private List<List<Point>> shapes = new ArrayList<>();
 
-    private int activeShapeNr = 0;
-
+    private int activeShapeNr;
 
     public Trapez() {
+        this.activeShapeNr = 0;
     }
 
     @Override
@@ -51,9 +51,6 @@ public class Trapez extends Piece {
         setRandomColor();
 
     }
-
-
-
 
     @Override
     public List<List<Point>> getShapes() {

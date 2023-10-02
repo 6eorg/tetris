@@ -10,9 +10,10 @@ public class Line extends Piece {
 
     private List<List<Point>> shapes = new ArrayList<>();
 
-    private int activeShapeNr = 0;
+    private int activeShapeNr;
 
     public Line() {
+        this.activeShapeNr = 0;
     }
 
     @Override

@@ -20,8 +20,6 @@ public class Field {
 
     private boolean isChecking = false;
 
-
-
     public Field() {
         this.field = new Point[FIELD_HEIGHT][FIELD_WIDTH];
 
@@ -45,19 +43,13 @@ public class Field {
         System.out.println("field initialized");
     }
 
-
-
     public void addPiece(){
         //select random piece
         Random rnd = new Random();
         int randInt = rnd.nextInt(pieces.length);
         activePiece = pieces[randInt];
-
         activePiece.initialize();
-
-
     }
-
 
     public void addPieceToField(){
         isChecking = true;
@@ -66,7 +58,6 @@ public class Field {
             field[point.getY()][point.getX()].setEmpty(false);
             //set color
             field[point.getY()][point.getX()].setColor(point.getColor());
-
         }
         isChecking = false;
     }
@@ -82,7 +73,6 @@ public class Field {
         }
         isChecking = false;
     }
-
 
     public void fallDown(){
         this.activePiece.move();
@@ -105,17 +95,14 @@ public class Field {
                 isTouching = true;
                 break;
             }
-
             if (FIELD_HEIGHT  <= y){
                 System.out.println("ground reached");
                 isTouching = true;
                 break;
             }
-
         }
         isChecking = false;
         return isTouching;
-
     }
 
     public boolean isCoordinatePartOfThePiece(int x, int y){
@@ -127,13 +114,7 @@ public class Field {
             }
         }
         return false;
-
     }
-
-
-
-
-
 
     public void print(){
         for(int e = 0; e< 5;e++){
@@ -143,10 +124,8 @@ public class Field {
             //right border
             System.out.printf("#");
 
-
             for(int j = 0; j<FIELD_WIDTH;j++){
                 Point point = field[i][j];
-
 
                 if (point.isEmpty()){
                     System.out.printf(point.getColor().getCode() + "_" + ConsoleColors.RESET.getCode());
@@ -163,7 +142,6 @@ public class Field {
             }
             System.out.print("\n");
         }
-
     }
 
     public Piece getActivePiece() {

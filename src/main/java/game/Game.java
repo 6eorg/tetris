@@ -34,10 +34,7 @@ public class Game {
                 }
             }
 
-
             Thread.sleep(500);
-
-
         }while (!gameOver);
         System.out.println("GAME OVER");
     }
