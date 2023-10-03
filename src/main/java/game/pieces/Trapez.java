@@ -10,10 +10,8 @@ public class Trapez extends Piece {
 
     private List<List<Point>> shapes = new ArrayList<>();
 
-    private int activeShapeNr;
-
     public Trapez() {
-        this.activeShapeNr = 0;
+        super();
     }
 
     @Override
@@ -57,17 +55,4 @@ public class Trapez extends Piece {
         return shapes;
     }
 
-    public void setActiveShape(int activeShape) {
-        this.activeShapeNr = activeShape;
-    }
-
-    @Override
-    public int getActiveShapeNr() {
-        return activeShapeNr;
-    }
-
-    @Override
-    public void setActiveShapeNr(int activeShapeNr) {
-        this.activeShapeNr = activeShapeNr;
-    }
 }

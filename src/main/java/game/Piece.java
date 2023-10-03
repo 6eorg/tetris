@@ -5,23 +5,21 @@ import java.util.List;
 
 public abstract class Piece {
 
-    //this classes will get overriden from child classes
+    private int activeShapeNr = 0;
+
     public abstract void initialize();
 
     public abstract List<List<Point>> getShapes();
 
     public List<Point> getActiveShape() {
-        return this.getShapes().get(this.getActiveShapeNr());
+        return this.getShapes().get(this.activeShapeNr);
     }
 
-
     public void rotate() {
-        int shapeNr = getActiveShapeNr();
-        shapeNr++;
-        if (shapeNr > getShapes().size() - 1) {
-            shapeNr = 0;
+        this.activeShapeNr++;
+        if (this.activeShapeNr > getShapes().size()){
+            this.activeShapeNr = 0;
         }
-        setActiveShapeNr(shapeNr);
     }
 
     public void move() {
@@ -88,13 +86,6 @@ public abstract class Piece {
         System.out.println("random color is set to: " + randomColor.getCode());
     }
 
-    public int getActiveShapeNr() {
-        return 0;
-    }
-
-    public void setActiveShapeNr(int activeShapeNr) {
-
-    }
 
     private List<Point> findRighestOrLeftestPointsOfPiece(List<Point> shape, String side) {
         int rightestX = 0;
