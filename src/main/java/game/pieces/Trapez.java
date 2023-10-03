@@ -16,6 +16,7 @@ public class Trapez extends Piece {
 
     @Override
     public void initialize() {
+
         shapes = new ArrayList<>();
         ArrayList<Point> shape1 = new ArrayList();
         shape1.add(new Point(4, 0));

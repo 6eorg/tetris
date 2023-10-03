@@ -105,6 +105,55 @@ public class Field {
         return isTouching;
     }
 
+    public boolean isPieceTouchesLeft(){
+        isChecking = true;
+        //check if piece can move to the left
+        List<Point> activeShape = activePiece.getActiveShape();
+        boolean isTouching = false;
+        for (Point point: activeShape
+        ) {
+            //point to check
+            int y = point.getY() ; //y stays the same, important is the point on the left
+            int x = point.getX() -1;
+
+            if (y < FIELD_HEIGHT && !field[y][x].isEmpty() && !isCoordinatePartOfThePiece(x,y) ){
+                isTouching = true;
+                break;
+            }
+            if (FIELD_HEIGHT  <= y){
+                isTouching = true;
+                break;
+            }
+        }
+        isChecking = false;
+        return isTouching;
+    }
+
+    public boolean isPieceTouchesRight(){
+        isChecking = true;
+        //check if piece can move to the left
+        List<Point> activeShape = activePiece.getActiveShape();
+        boolean isTouching = false;
+        for (Point point: activeShape
+        ) {
+            //point to check
+            int y = point.getY() ; //y stays the same, important is the point on the right
+            int x = point.getX() + 1;
+
+            if (y < FIELD_HEIGHT && !field[y][x].isEmpty() && !isCoordinatePartOfThePiece(x,y) ){
+                isTouching = true;
+                break;
+            }
+            if (FIELD_HEIGHT  <= y){
+                isTouching = true;
+                break;
+            }
+        }
+        isChecking = false;
+        return isTouching;
+    }
+
+
     public boolean isCoordinatePartOfThePiece(int x, int y){
         List<Point> activeShape = this.activePiece.getActiveShape();
         for (Point shapePoints: activeShape
