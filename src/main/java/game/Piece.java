@@ -12,7 +12,13 @@ public abstract class Piece {
     public abstract List<List<Point>> getShapes();
 
     public List<Point> getActiveShape() {
-        return this.getShapes().get(this.activeShapeNr);
+        try{
+            return this.getShapes().get(this.activeShapeNr);
+        }
+        catch (Exception e){
+            return this.getShapes().get(0);
+        }
+
     }
 
     public void rotate() {
@@ -48,7 +54,7 @@ public abstract class Piece {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
-                point.setY(point.getY() + 1);
+                point.setY(point.getY());
                 point.setX(point.getX() + 1);
             }
         }
@@ -66,7 +72,7 @@ public abstract class Piece {
             List<Point> shape = shapes.get(i);
             for (Point point : shape
             ) {
-                point.setY(point.getY() - 1);
+                point.setY(point.getY());
                 point.setX(point.getX() - 1);
             }
         }
