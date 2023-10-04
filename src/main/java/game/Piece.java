@@ -7,6 +7,8 @@ public abstract class Piece {
 
     private int activeShapeNr = 0;
 
+    private String name;
+
     public abstract void initialize();
 
     public abstract List<List<Point>> getShapes();
@@ -90,6 +92,33 @@ public abstract class Piece {
             }
         }
         System.out.println("random color is set to: " + randomColor.getCode());
+    }
+
+    public void setSymbol(String symbol){
+        List<List<Point>> shapes = getShapes();
+        for (int i = 0; i < shapes.size(); i++) {
+            List<Point> shape = shapes.get(i);
+            for (Point point : shape
+            ) {
+                point.setSymbol(symbol);
+            }
+        }
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setConsoleColor(ConsoleColors color){
+        List<List<Point>> shapes = getShapes();
+        for (int i = 0; i < shapes.size(); i++) {
+            List<Point> shape = shapes.get(i);
+            for (Point point : shape
+            ) {
+                point.setColor(color);
+            }
+        }
+
     }
 
 }

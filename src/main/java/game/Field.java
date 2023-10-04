@@ -58,6 +58,9 @@ public class Field {
             field[point.getY()][point.getX()].setEmpty(false);
             //set color
             field[point.getY()][point.getX()].setColor(point.getColor());
+            //set symbol
+            field[point.getY()][point.getX()].setSymbol(point.getSymbol());
+
         }
         isChecking = false;
     }
@@ -69,6 +72,8 @@ public class Field {
             field[point.getY()][point.getX()].setEmpty(true);
             //remove color
             field[point.getY()][point.getX()].setColor(ConsoleColors.RESET);
+            field[point.getY()][point.getX()].setSymbol("_");
+
 
         }
         isChecking = false;
@@ -179,7 +184,7 @@ public class Field {
                 if (point.isEmpty()){
                     System.out.printf(point.getColor().getCode() + "_" + ConsoleColors.RESET.getCode());
                 }else {
-                    System.out.printf(point.getColor().getCode() + "#" + ConsoleColors.RESET.getCode());
+                    System.out.printf(point.getColor().getCode() + point.getSymbol() + ConsoleColors.RESET.getCode());
                 }
             }
             //left border

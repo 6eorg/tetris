@@ -1,5 +1,6 @@
 package game.pieces;
 
+import game.ConsoleColors;
 import game.Piece;
 import game.Point;
 
@@ -15,9 +16,11 @@ public class Line extends Piece {
     public Line() {
         super();
     }
-
     @Override
     public void initialize() {
+
+
+
         shapes = new ArrayList<>();
         ArrayList<Point> shape1 = new ArrayList();
         shape1.add(new Point(4, 0));
@@ -33,9 +36,11 @@ public class Line extends Piece {
         shape2.add( new Point(5, 2));
         shapes.add(shape2);
 
-        setRandomColor();
+        setSymbol("§");
+        setConsoleColor(ConsoleColors.BLUE);
+        setName("Line");
 
-    }
+      }
 
     @Override
     public List<List<Point>> getShapes() {

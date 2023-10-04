@@ -1,5 +1,6 @@
 package game.pieces;
 
+import game.ConsoleColors;
 import game.Piece;
 import game.Point;
 
@@ -16,6 +17,7 @@ public class Trapez extends Piece {
 
     @Override
     public void initialize() {
+
 
         shapes = new ArrayList<>();
         ArrayList<Point> shape1 = new ArrayList();
@@ -47,7 +49,9 @@ public class Trapez extends Piece {
         shape4.add( new Point(4, 2));
         shapes.add(shape4);
 
-        setRandomColor();
+        setSymbol("@");
+        setConsoleColor(ConsoleColors.GREEN);
+        setName("Trapez");
 
     }
 

@@ -7,6 +7,8 @@ public class Point {
 
     private ConsoleColors color;
 
+    private String symbol;
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
@@ -43,5 +45,13 @@ public class Point {
 
     public void setColor(ConsoleColors color) {
         this.color = color;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 }
